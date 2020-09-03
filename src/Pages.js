@@ -67,9 +67,10 @@ export const HomepageUI = (props) => {
         {/* Homepage body */}
         <div className="row">
           <div className="col-sm-12 col-md-8 main">
-              <img path={android} height="50%" />
+            <div>
+              <img src={compass} alt="some-images" className="rounded " />
               Hello
-            
+            </div>
           </div>
 
           <div className="col-sm-12 col-md-4 main">
@@ -86,8 +87,6 @@ export const HomepageUI = (props) => {
             </h4>
           </div>
         </div>
-
-
       </div>
     </div>
   );
@@ -175,10 +174,7 @@ return (
 
     {/* Signup footer*/}
     <div className="footer"></div>
-    <Link to={"/"} replace={true}>
-      {" "}
-      Home{" "}
-    </Link>
+    <Link to={"/HomepageUI"} replace={true}>Home</Link>
   </div>
 );
 
