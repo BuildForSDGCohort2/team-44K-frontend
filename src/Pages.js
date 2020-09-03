@@ -8,15 +8,32 @@ import compass from './Images/compass.jpg'
 import android from './Images/android.jpg'
 
 
-export const Header = () => {
+
+
+/**
+ * Time things
+ */
+
+
+let today = new Date();
+let date =
+  today.getDate() + "/" + (today.getMonth() + 1) + "/" + today.getUTCFullYear();
+let time =
+  today.getHours() + " : " + today.getMinutes() + " : " + today.getSeconds();
+let dateTime = date + "      " + time;
+
+
+
+
+export const Header = (props) => {
 
   return (
     <div className="container">
       <div className="col-12 col-sm-12 col-md-12 col-lg-12 jumbotron mt-5">
         <h5 className="header">
           <h2 className="text-center">Hello and welcome to findIt...</h2>
-          
-          <Link to={"/Home"} replace={true}>
+
+          <Link to={"/HomepageUI"} replace={true}>
             Home
           </Link>
           <span className="float-right">
@@ -27,6 +44,7 @@ export const Header = () => {
           </span>
         </h5>
         <Switch>
+          <Route  path={"/HomepageUI"} component={HomepageUI} exact={true} />
           <Route exact path={"/Signup"} component={Signup} exact={true} />
           <Route exact path={"/Login"} component={Login} exact={true} />
           <Route path={"/About"} component={About} exact={true} />
@@ -38,50 +56,44 @@ export const Header = () => {
 }
 
 //findit homepage UI
-export const HomepageUI = (props) => (
-  <div className="container">
-    <div className="row">
-      {/* Homepage header */}
-      
+export const HomepageUI = (props) => {
+  console.log(android)
 
-    {/* Homepage body */}
-    <div className="row">
-      <div className="col-sm-12 col-md-8 main">
-        <p>
-          <img path={"./Images/compass.jpg"} height="50%" />
-        </p>
-      </div>
+  return (
+    <div className="container">
+      <div className="row">
+        {/* Homepage header */}
 
-      <div className="col-sm-12 col-md-4 main">
-        <img src={android} alt="some-images" className="rounded " />
+        {/* Homepage body */}
+        <div className="row">
+          <div className="col-sm-12 col-md-8 main">
+              <img path={android} height="50%" />
+              Hello
+            
+          </div>
+
+          <div className="col-sm-12 col-md-4 main">
+            <img src={android} alt="some-images" className="rounded " />
+          </div>
+        </div>
+        <br></br>
+        {/* Homepage footer */}
+
+        <div className="row">
+          <div className="col-12 col-sm-12 col-md-12 col-lg-12 footer">
+            <h4 className="text-center">
+              &copy; {new Date().getFullYear()} by Magpiny
+            </h4>
+          </div>
+        </div>
+
+
       </div>
     </div>
-    <br></br>
-    
+  );
 
-    {/* Homepage footer */}
-
-    <div className="row">
-      <div className="col-12 col-sm-12 col-md-12 col-lg-12 footer">
-        <h4 className="text-center">
-          &copy; {new Date().getFullYear()} by Magpiny
-        </h4>
-      </div>
-    </div>
-  </div>
-  </div>
-);
-
-/**
- * Time things
- */
-let today = new Date();
-let date =
-  today.getDate() + "/" + (today.getMonth() + 1) + "/" + today.getUTCFullYear();
-let time =
-  today.getHours() + " : " + today.getMinutes() + " : " + today.getSeconds();
-let dateTime = date + "      " + time;
-
+}
+  
 
 
 /**
