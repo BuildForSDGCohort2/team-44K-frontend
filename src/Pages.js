@@ -13,9 +13,9 @@ export const Header = () => {
   return (
     <div className="container">
       <div className="col-12 col-sm-12 col-md-12 col-lg-12 jumbotron mt-5">
-        <h2 className="text-center">Hello and welcome to findIt...</h2>
-
         <h5 className="header">
+          <h2 className="text-center">Hello and welcome to findIt...</h2>
+          
           <Link to={"/Home"} replace={true}>
             Home
           </Link>
