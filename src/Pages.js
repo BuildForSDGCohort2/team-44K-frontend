@@ -4,28 +4,45 @@ import "./bootstrap.css";
 import "./App.css";
 import {useForm } from 'react-hook-form';
 import { Formik, Field, Form, ErrorMessage } from 'formik';
+import compass from './Images/compass.jpg'
+import android from './Images/android.jpg'
+
+
+export const Header = () => {
+
+  return (
+    <div className="container">
+      <div className="col-12 col-sm-12 col-md-12 col-lg-12 jumbotron mt-5">
+        <h2 className="text-center">Hello and welcome to findIt...</h2>
+
+        <h5 className="header">
+          <Link to={"/Home"} replace={true}>
+            Home
+          </Link>
+          <span className="float-right">
+            <Link to={"/Signup"} replace={true}>
+              Signup
+            </Link>
+            |<Link to={"/Login"}>Login</Link> |<Link to={"/About"}>About</Link>
+          </span>
+        </h5>
+        <Switch>
+          <Route exact path={"/Signup"} component={Signup} exact={true} />
+          <Route exact path={"/Login"} component={Login} exact={true} />
+          <Route path={"/About"} component={About} exact={true} />
+        </Switch>
+      </div>
+    </div>
+  );
+
+}
 
 //findit homepage UI
 export const HomepageUI = (props) => (
   <div className="container">
     <div className="row">
       {/* Homepage header */}
-      <div className="col-12 col-sm-12 col-md-12 col-lg-12 header">
-        <h3 className="text-center">Hello and welcome to findIt...</h3>
-
-        <h5 className="alert-heading">
-          <Link to={"/"} replace={true} >
-            Home
-          </Link>
-          <span className="float-right">
-            <Link to={"/Signup"} replace={true}>
-              Signup
-            </Link>{" "}
-            |<Link to={"/Login"}>Login</Link> |<Link to={"/About"}>About</Link>
-          </span>
-        </h5>
-      </div>
-    </div>
+      
 
     {/* Homepage body */}
     <div className="row">
@@ -36,18 +53,11 @@ export const HomepageUI = (props) => (
       </div>
 
       <div className="col-sm-12 col-md-4 main">
-        <img src="Images/" alt="some-images" className="rounded " />
+        <img src={android} alt="some-images" className="rounded " />
       </div>
     </div>
     <br></br>
-    <br></br>
-    <br></br>
-
-    <Switch>
-      <Route exact path={"/Signup"} component={Signup} exact={true} />
-      <Route exact path={"/Login"} component={Login} exact={true} />
-      <Route path={"/About"} component={About} exact={true} />
-    </Switch>
+    
 
     {/* Homepage footer */}
 
@@ -58,6 +68,7 @@ export const HomepageUI = (props) => (
         </h4>
       </div>
     </div>
+  </div>
   </div>
 );
 

@@ -1,8 +1,9 @@
 import React from 'react';
 import { BrowserRouter } from 'react-router-dom/cjs/react-router-dom.min';
+import {Switch, Route} from 'react-router-dom'
 import './App.css';
 import './bootstrap.css';
-import { HomepageUI} from './Pages';
+import { Header} from './Pages';
 
 
 
@@ -10,11 +11,10 @@ import { HomepageUI} from './Pages';
 
 
 const App = () => (
-    <BrowserRouter>
-
-        <HomepageUI />
-    </BrowserRouter>
-
+  <BrowserRouter>
+    <Header />
+    
+  </BrowserRouter>
 );
 
 export default App;
