@@ -1,11 +1,12 @@
 import React from "react";
-import { Link, Route, BrowserRouter, Router, Switch } from "react-router-dom";
+import { Link, Route, Switch } from "react-router-dom";
 import "./bootstrap.css";
 import "./App.css";
 import {useForm } from 'react-hook-form';
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import compass from './Images/compass.jpg'
 import android from './Images/android.jpg'
+import Logopit from './Images/Logopit.png'
 
 
 
@@ -22,15 +23,21 @@ let time =
   today.getHours() + " : " + today.getMinutes() + " : " + today.getSeconds();
 let dateTime = date + "      " + time;
 
-
-
-
+/**
+ * Page header goes here
+ * @param {*} props 
+ */
 export const Header = (props) => {
 
   return (
     <div className="container">
+
+      <div ></div>
+
       <div className="col-12 col-sm-12 col-md-12 col-lg-12 jumbotron mt-5">
+       
         <h5 className="header">
+          
           <h2 className="text-center">Hello and welcome to findIt...</h2>
 
           <Link to={"/HomepageUI"} replace={true}>
@@ -43,24 +50,45 @@ export const Header = (props) => {
             |<Link to={"/Login"}>Login</Link> |<Link to={"/About"}>About</Link>
           </span>
         </h5>
-        <Switch>
-          <Route  path={"/HomepageUI"} component={HomepageUI} exact={true} />
-          <Route exact path={"/Signup"} component={Signup} exact={true} />
-          <Route exact path={"/Login"} component={Login} exact={true} />
-          <Route path={"/About"} component={About} exact={true} />
-        </Switch>
       </div>
+
+      <Switch>
+        <Route exact path={"/HomepageUI"} component={HomepageUI} />
+        <Route exact path={"/Signup"} component={Signup} />
+        <Route exact path={"/Login"} component={Login} />
+        <Route path={"/About"} component={About} exact={true} />
+      </Switch>
     </div>
   );
 
 }
 
+/**
+ * Page footer goes here
+ * footer to be imported everywhere
+ * JSX syntax used here 
+ */
+
+ export const Footer = () => {
+   return (
+     <diV>
+       <div className="row">
+         <div className="col-12 col-sm-12 col-md-12 col-lg-12 footer">
+           <h4 className="text-center">
+             &copy; {new Date().getFullYear()} by Magpiny
+           </h4>
+         </div>
+       </div>
+     </diV>
+   );
+ }
+
 //findit homepage UI
-export const HomepageUI = (props) => {
+export const HomepageUI = () => {
   console.log(android)
 
   return (
-    <div className="container">
+    <div className="container mt-5">
       <div className="row">
         {/* Homepage header */}
 
@@ -69,7 +97,7 @@ export const HomepageUI = (props) => {
           <div className="col-sm-12 col-md-8 main">
             <div>
               <img src={compass} alt="some-images" className="rounded " />
-              Hello
+            
             </div>
           </div>
 
@@ -77,17 +105,11 @@ export const HomepageUI = (props) => {
             <img src={android} alt="some-images" className="rounded " />
           </div>
         </div>
-        <br></br>
-        {/* Homepage footer */}
-
-        <div className="row">
-          <div className="col-12 col-sm-12 col-md-12 col-lg-12 footer">
-            <h4 className="text-center">
-              &copy; {new Date().getFullYear()} by Magpiny
-            </h4>
-          </div>
-        </div>
       </div>
+
+      <br></br>
+      {/* Homepage footer */}
+      <Footer />
     </div>
   );
 
@@ -172,9 +194,13 @@ return (
       <button type="submit">Register</button>
     </form>
 
+    <Link to={"/HomepageUI"} replace={true}>
+      Home
+    </Link>
     {/* Signup footer*/}
-    <div className="footer"></div>
-    <Link to={"/HomepageUI"} replace={true}>Home</Link>
+    <div className="footer">
+      <Footer />
+    </div>
   </div>
 );
 
@@ -190,7 +216,7 @@ return (
  * email and username
  */
 
-export const Login = function () {
+export const Login = ()=> {
 
   return (
     <div className="container ">
@@ -247,6 +273,7 @@ export const Login = function () {
           )}
         </Formik>
       </div>
+      <Footer />
     </div>
   );
 };
@@ -267,8 +294,13 @@ export const Login = function () {
      <div className="container">
        <h1>
          This is my about page{" "}
-         <Link to={"/HomepageUI"} action="replace"> Home </Link>
+         <Link to={"/HomepageUI"} action="replace">
+           {" "}
+           Home{" "}
+         </Link>
        </h1>
+
+       <Footer />
      </div>
    );
  };
