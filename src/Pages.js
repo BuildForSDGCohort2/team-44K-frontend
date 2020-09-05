@@ -1,12 +1,12 @@
-import React from "react";
+import React, {Component} from "react";
 import { Link, Route, Switch } from "react-router-dom";
 import "./bootstrap.css";
 import "./App.css";
 import {useForm } from 'react-hook-form';
-import { Formik, Field, Form, ErrorMessage } from 'formik';
-import compass from './Images/compass.jpg'
-import android from './Images/android.jpg'
-import Logopit from './Images/Logopit.png'
+import { Formik, Field, Form, ErrorMessage, useFormik } from 'formik';
+import compass from './Images/compass.jpg';
+import android from './Images/android.jpg';
+import Logopit from './Images/Logopit.png';
 
 
 
@@ -31,33 +31,38 @@ export const Header = (props) => {
 
   return (
     <div className="container">
+      <div className="row">
+        <div className="col-12 col-sm-12 col-md-12 col-lg-12 jumbotron mt-5">
+          <h5 className="header">
+            <img
+              src={Logopit}
+              alt="Logo"
+              width="30%"
+              height="95%"
+              className="float-left "
+            />
+            <h2 className="text-center">Hello and welcome to findIt...</h2>
 
-      <div ></div>
-
-      <div className="col-12 col-sm-12 col-md-12 col-lg-12 jumbotron mt-5">
-       
-        <h5 className="header">
-          
-          <h2 className="text-center">Hello and welcome to findIt...</h2>
-
-          <Link to={"/HomepageUI"} replace={true}>
-            Home
-          </Link>
-          <span className="float-right">
-            <Link to={"/Signup"} replace={true}>
-              Signup
+            <Link to={"/"} replace={true}>
+              Home
             </Link>
-            |<Link to={"/Login"}>Login</Link> |<Link to={"/About"}>About</Link>
-          </span>
-        </h5>
-      </div>
+            <span className="float-right">
+              <Link to={"/Signup"} replace={true}>
+                Signup
+              </Link>
+              |<Link to={"/Login"}>Login</Link> |
+              <Link to={"/About"}>About</Link>
+            </span>
+          </h5>
+        </div>
 
-      <Switch>
-        <Route exact path={"/HomepageUI"} component={HomepageUI} />
-        <Route exact path={"/Signup"} component={Signup} />
-        <Route exact path={"/Login"} component={Login} />
-        <Route path={"/About"} component={About} exact={true} />
-      </Switch>
+        <Switch>
+          <Route exact path={"/"} component={HomepageUI} />
+          <Route exact path={"/Signup"} component={Signup} />
+          <Route exact path={"/Login"} component={Login} />
+          <Route path={"/About"} component={About} exact={true} />
+        </Switch>
+      </div>
     </div>
   );
 
@@ -194,19 +199,20 @@ return (
       <button type="submit">Register</button>
     </form>
 
-    <Link to={"/HomepageUI"} replace={true}>
+    <Link to={"/"} replace={true}>
       Home
     </Link>
+
+
     {/* Signup footer*/}
-    <div className="footer">
+    
       <Footer />
-    </div>
+
+    
   </div>
 );
 
 }
-
-
 
 
 
@@ -216,11 +222,46 @@ return (
  * email and username
  */
 
-export const Login = ()=> {
+class Login extends Component{
+  constructor(){
+    super()
+    this.state = {
+      email : "",
+      password : ""
+    }
+    this.onchange = this.onChange.bind(this)
+    this.onSubmit = this.onSubmit.bind(this)
+  }
 
-  return (
-    <div className="container ">
-      <h1>Kindly login {dateTime} </h1>
+  onChange(e){
+    this.setState ({[e.target.name] : e.target.value})
+  }
+
+  onSubmit(e){
+    e.preventDefault()
+
+    const user = {
+      email : this.state.email,
+      password : this.state.password
+    }
+   this.login(user).then(res =>{
+
+      if (res){
+        this.props.history.push(`/Profile`)
+
+      }
+
+    })
+  }
+
+  
+  render(){
+
+
+    return(
+      
+      <div className="container ">
+      <h1 className="mb-3">Kindly login {dateTime} </h1>
 
       {/* My form goes here */}
 
@@ -239,17 +280,27 @@ export const Login = ()=> {
             }
             return errors;
           }}
+          /*
           onSubmit={(values, { setSubmitting }) => {
             setTimeout(() => {
               alert(JSON.stringify(values, null, 2));
               setSubmitting(false);
             }, 2000);
           }}
+       */
+
         >
           {({ isSubmitting }) => (
-            <Form className="form-control-sm">
-              <label for="email">Enter your email</label> &nbsp;&nbsp;
-              <Field type="email" name="email" />
+            <Form validate onSubmit={this.onSubmit} className="form-control-sm align-content-center mt-5">
+
+              <label htmlFor="email">Enter your email</label> &nbsp;&nbsp;
+
+              <Field type="email" 
+              name="email" onChange={this.onChange}
+               value={this.state.email}
+               placeholder="xyz@yahoo.com"
+              />
+
               <ErrorMessage
                 name="email"
                 className="alert-danger"
@@ -257,14 +308,19 @@ export const Login = ()=> {
               />
               <br />
               <br />
-              <label for="password">Enter your password</label> &nbsp;&nbsp;
-              <Field type="password" name="password" />
+
+              <label htmlFor="password">Enter your password</label> &nbsp;&nbsp;
+              <Field type="password" name="password" 
+                 value={this.state.password}
+                 onChange = {this.onChange}
+              />
               <ErrorMessage name="password" component="div" />
               <br />
               <br />
+
               <button
                 type="submit"
-                className="btn bg-yellow btn-sm btn-outline-info "
+                className="btn btn-primary btn-sm btn-outline-info "
                 disabled={isSubmitting}
               >
                 Login
@@ -275,13 +331,12 @@ export const Login = ()=> {
       </div>
       <Footer />
     </div>
-  );
-};
 
+    )
+  }
+}
 
-
-
-
+export default Login ;
 
 
 /**
