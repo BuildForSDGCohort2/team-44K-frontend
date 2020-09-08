@@ -1,9 +1,12 @@
 import React, {Component} from "react";
 import { Link, Route, Switch } from "react-router-dom";
+import * as Yup from 'yup'
 import "./bootstrap.css";
 import "./App.css";
+import "./Profile"
 import {useForm } from 'react-hook-form';
-import { Formik, Field, Form, ErrorMessage, useFormik } from 'formik';
+import { Formik, Field, Form, ErrorMessage, useFormik, validateYupSchema } from 'formik';
+import {register, login} from './components/userFunctions'
 import compass from './Images/compass.jpg';
 import android from './Images/android.jpg';
 import Logopit from './Images/Logopit.png';
@@ -31,7 +34,7 @@ export const Header = (props) => {
 
   return (
     <div className="container">
-      <div className="row">
+      <div className="row  navbar navbar-dark navbar-collapse">
         <div className="col-12 col-sm-12 col-md-12 col-lg-12 jumbotron mt-5">
           <h5 className="header">
             <img
@@ -43,15 +46,15 @@ export const Header = (props) => {
             />
             <h2 className="text-center">Hello and welcome to findIt...</h2>
 
-            <Link to={"/"} replace={true}>
+            <Link to={"/"} replace={true} className="nav-link">
               Home
             </Link>
             <span className="float-right">
-              <Link to={"/Signup"} replace={true}>
+              <Link to={"/Signup"} replace={true} className="nav-link">
                 Signup
               </Link>
-              |<Link to={"/Login"}>Login</Link> |
-              <Link to={"/About"}>About</Link>
+              |<Link to={"/Login"} className="nav-link">Login</Link> |
+              <Link to={"/About"} className="nav-link">About</Link>
             </span>
           </h5>
         </div>
@@ -123,13 +126,143 @@ export const HomepageUI = () => {
 
 
 /**
- * Signup page
+ * Signup page settings goes here
+ * 
+ * 
  */
+
+ class Signup extends Component {
+   constructor() {
+     super();
+     this.state = {
+       first_name: "",
+       last_name: "",
+       username: "",
+       email: "",
+       age: "",
+       password: "",
+     };
+     this.onchange = this.onChange.bind(this);
+     this.onSubmit = this.onSubmit.bind(this);
+   }
+   //handleChange events
+   onChange(e) {
+     this.setState({ [e.target.name]: e.target.value });
+   }
+
+   //handleSubmit events
+   onSubmit(e) {
+     e.preventDefault();
+
+     const user = {
+       first_name: this.state.first_name,
+       last_name: this.state.last_name,
+       username: this.state.username,
+       email: this.state.email,
+       age: this.state.age,
+       password: this.state.password,
+     }
+     register(user).then((res) => {
+       if (res) {
+         this.props.history.push("/Login");
+       }
+     });
+   }
+
+    validationSchema = Yup.object({
+     first_name : Yup.string().min(2).required('Required'),
+     last_name : Yup.string().min(2).required('Required'),
+     username : Yup.string().max(25).required('Required'),
+     email    : Yup.email().required('Required'),
+     password : Yup.string().min(8).required('Required')
+   }) 
+
+   render() {
+
+    return(
+      <div className="container">
+        <div className="form-group">
+
+          <Formik initialValues={{
+            first_name:"",
+            last_name:"" ,
+            username:"",
+            email:"",
+            password: ""
+            }}
+            validationSchema={this.validationSchema}
+            onSubmit={this.onSubmit}
+            >
+
+
+              {
+                ({handleSubmit, values, errors}) => {
+
+
+                  <Form onSubmit={handleSubmit}>
+
+                    <input
+                          type="text"
+                          
+
+                    
+                    />
+
+                  </Form>
+
+
+                }
+              }
+
+          </Formik>
+
+        </div>
+
+
+
+        </div>
+    )
+   }
+ }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 export const Signup = (props) => {
 
     const {register, handleSubmit, errors} = useForm();
     const onSubmit = data => console.log(data); 
     console.log(errors)
+
+
+
+
+
+
+
+
+
+
+
 
 return (
   //signup
@@ -244,7 +377,7 @@ class Login extends Component{
       email : this.state.email,
       password : this.state.password
     }
-   this.login(user).then(res =>{
+    login(user).then(res =>{
 
       if (res){
         this.props.history.push(`/Profile`)
