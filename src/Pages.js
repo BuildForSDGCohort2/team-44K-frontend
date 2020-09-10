@@ -1,12 +1,12 @@
 import React, {Component} from "react";
 import { Link, Route, Switch } from "react-router-dom";
-import * as Yup from 'yup'
+import * as Yup from 'yup';
 import "./bootstrap.css";
 import "./App.css";
 import "./Profile"
-import {useForm } from 'react-hook-form';
-import { Formik, Field, Form, ErrorMessage, useFormik, validateYupSchema } from 'formik';
-import {register, login} from './components/userFunctions'
+import { Formik, Field, Form, ErrorMessage  } from 'formik';
+import {register, login} from './components/userFunctions';
+import About from './components/About'
 import compass from './Images/compass.jpg';
 import android from './Images/android.jpg';
 import Logopit from './Images/Logopit.png';
@@ -34,7 +34,7 @@ export const Header = (props) => {
 
   return (
     <div className="container">
-      <div className="row  navbar navbar-dark navbar-collapse">
+      <div className="row ">
         <div className="col-12 col-sm-12 col-md-12 col-lg-12 jumbotron mt-5">
           <h5 className="header">
             <img
@@ -44,17 +44,17 @@ export const Header = (props) => {
               height="95%"
               className="float-left "
             />
-            <h2 className="text-center">Hello and welcome to findIt...</h2>
+            <p className="text-center">Hello and welcome to findIt...</p>
 
-            <Link to={"/"} replace={true} className="nav-link">
+            <Link to={"/"} replace={true} className="">
               Home
             </Link>
             <span className="float-right">
-              <Link to={"/Signup"} replace={true} className="nav-link">
+              <Link to={"/Signup"} replace={true} >
                 Signup
               </Link>
-              |<Link to={"/Login"} className="nav-link">Login</Link> |
-              <Link to={"/About"} className="nav-link">About</Link>
+              |<Link to={"/Login"} className="">Login</Link> |
+              <Link to={"./About"} className="">About</Link>
             </span>
           </h5>
         </div>
@@ -63,7 +63,7 @@ export const Header = (props) => {
           <Route exact path={"/"} component={HomepageUI} />
           <Route exact path={"/Signup"} component={Signup} />
           <Route exact path={"/Login"} component={Login} />
-          <Route path={"/About"} component={About} exact={true} />
+          <Route path={"./About"} component={About} exact={true} />
         </Switch>
       </div>
     </div>
@@ -74,12 +74,12 @@ export const Header = (props) => {
 /**
  * Page footer goes here
  * footer to be imported everywhere
- * JSX syntax used here 
+ *  
  */
 
  export const Footer = () => {
    return (
-     <diV>
+     <div>
        <div className="row">
          <div className="col-12 col-sm-12 col-md-12 col-lg-12 footer">
            <h4 className="text-center">
@@ -87,7 +87,7 @@ export const Header = (props) => {
            </h4>
          </div>
        </div>
-     </diV>
+     </div>
    );
  }
 
@@ -131,37 +131,42 @@ export const HomepageUI = () => {
  * 
  */
 
- class Signup extends Component {
-   constructor() {
-     super();
+//Validation Schema
+ const signUpSchema = Yup.object({
+   username: Yup.string().max(25, "Username too long!").required("Username is Required"),
+   email: Yup.string().email().required("Email address required!"),
+   age : Yup.string().notRequired(),
+   password: Yup.string().min(8, "password too short!").required("Password is required!"),
+   confirm_password: Yup.string()
+     .min(8)
+     .required()
+     .oneOf([Yup.ref("password"), null], "Passwords must match!"),
+ });
+
+ export class Signup extends Component {
+   constructor(props) {
+     super(props);
      this.state = {
-       first_name: "",
-       last_name: "",
        username: "",
        email: "",
        age: "",
        password: "",
+       confirm_password: "",
      };
-     this.onchange = this.onChange.bind(this);
+     
      this.onSubmit = this.onSubmit.bind(this);
    }
-   //handleChange events
-   onChange(e) {
-     this.setState({ [e.target.name]: e.target.value });
-   }
-
+   
    //handleSubmit events
-   onSubmit(e) {
+    onSubmit(e) {
      e.preventDefault();
 
      const user = {
-       first_name: this.state.first_name,
-       last_name: this.state.last_name,
        username: this.state.username,
        email: this.state.email,
        age: this.state.age,
        password: this.state.password,
-     }
+     };
      register(user).then((res) => {
        if (res) {
          this.props.history.push("/Login");
@@ -169,185 +174,118 @@ export const HomepageUI = () => {
      });
    }
 
-    validationSchema = Yup.object({
-     first_name : Yup.string().min(2).required('Required'),
-     last_name : Yup.string().min(2).required('Required'),
-     username : Yup.string().max(25).required('Required'),
-     email    : Yup.email().required('Required'),
-     password : Yup.string().min(8).required('Required')
-   }) 
-
    render() {
+     return (
+       <div className="container">
+         <div className="form mt-5 mx-auto my-auto">
+           <h1 className="mb-3">Kindly login {dateTime} </h1>
+           <Formik
+             initialValues={{
+               username: "",
+               email: "",
+               age: "",
+               password: "",
+               confirm_password: "",
+             }}
+             validationSchema={signUpSchema}
+             onSubmit={(values) => console.log(values)}
+           >
+             {({ handleSubmit }) => (
+               <Form className="mx-auto block">
+                 <label htmlFor="username">Enter your username</label>
+                 <Field
+                   type="text"
+                   name="username"
+                   placeholder="john"
+                   autoComplete="true"
+                 />
 
-    return(
-      <div className="container">
-        <div className="form-group">
+                 <ErrorMessage
+                   name="username"
+                   className="alert-danger"
+                   component="div"
+                 />
+                 <br />
+                 <br />
 
-          <Formik initialValues={{
-            first_name:"",
-            last_name:"" ,
-            username:"",
-            email:"",
-            password: ""
-            }}
-            validationSchema={this.validationSchema}
-            onSubmit={this.onSubmit}
-            >
+                 <label htmlFor="email">Email Address</label>
 
+                 <Field type="email" name="email" placeholder="xyz@yahoo.com" />
 
-              {
-                ({handleSubmit, values, errors}) => {
+                 <ErrorMessage
+                   name="email"
+                   className="alert alert-danger"
+                   component="div"
+                 />
 
+                 <br />
+                 <br />
 
-                  <Form onSubmit={handleSubmit}>
+                 <label htmlFor="age">Age</label>
 
-                    <input
-                          type="text"
-                          
+                 <Field as="select" type="text" name="age">
+                   <option value="18-24">18-24</option>
+                   <option value="25-34">25-34</option>
+                   <option value="35-50">35-50</option>
+                   <option value="Above 50">Above 50</option>
+                 </Field>
 
-                    
-                    />
+                 <ErrorMessage
+                   name="age"
+                   className="alert alert-danger"
+                   component="div"
+                 />
+                 <br />
+                 <br />
 
-                  </Form>
+                 <label htmlFor="password">password</label>
 
+                 <Field
+                   type="password"
+                   name="password"
+                   placeholder="xyz@fa3_89-"
+                 />
 
-                }
-              }
+                 <ErrorMessage
+                   name="password"
+                   className="alert-danger"
+                   component="div"
+                 />
+                 <br />
+                 <br />
 
-          </Formik>
+                 <label htmlFor="password">Confirm password</label>
 
-        </div>
+                 <Field
+                   type="password"
+                   name="confirm_password"
+                   placeholder=""
+                 />
 
+                 <ErrorMessage
+                   name="confirm_password"
+                   className="alert alert-danger"
+                   component="div"
+                 />
+                 <br />
+                 <br />
 
+                 <button type="submit" className="btn btn-warning btn-md  ">
+                   Signup
+                 </button>
+               </Form>
+             )}
+           </Formik>
+         </div>
 
-        </div>
-    )
+         <Footer />
+       </div>
+     );
    }
  }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-export const Signup = (props) => {
-
-    const {register, handleSubmit, errors} = useForm();
-    const onSubmit = data => console.log(data); 
-    console.log(errors)
-
-
-
-
-
-
-
-
-
-
-
-
-return (
-  //signup
-  <div className="container bg-success signup justify-content-center ">
-    <h1 className="text-center">Kindly Signup... {dateTime}</h1>
-    <br />
-
-    {/**
-     * My Signup form goes here
-     *
-     */}
-    <form onSubmit={handleSubmit(onSubmit)} className=" form-control ">
-      {/* Handlesubmit validates input before submitting*/}
-      <label for="firstName">First Name</label>&nbsp;&nbsp;
-      <input
-        type="text"
-        name="First Name "
-        placeholder="Sammy"
-        ref={register({ required: true, minLength: 2, maxLength: 50 })}
-      />
-      {/* errors will return when field validation fails */}
-      {errors.LastName && (
-        <span className="alert-danger">This field is required</span>
-      )}
-      <br></br>
-      <br />
-      {/** register is used register input into the hook
-       * include validation with required or other html validation techniques
-       */}
-      <label for="lastName"> Last Name</label>&nbsp;&nbsp;
-      <input
-        type="text"
-        name="LastName"
-        defaultValue=""
-        placeholder="Magpiny"
-        ref={register({ required: true, maxLength: 50, minLength: 2 })}
-      />
-      {errors.LastName && (
-        <span className="alert-danger">This field is required</span>
-      )}
-      <br></br>
-      <br />
-      <label for="email">Email</label>&nbsp;&nbsp;&nbsp;
-      <input
-        type="text"
-        name="email"
-        defaultValue=""
-        ref={register({ required: true, pattern: !/^\S+@\S+$/i })}
-      />
-      {errors.email && (
-        <span className="alert-danger">Not a valid email address!</span>
-      )}
-      <br></br>
-      <br />
-      <label for="age">Select your Age group</label>&nbsp;&nbsp;
-      <select name="age">
-        <option value="youth">18 - 24</option>
-        <option value="abled">25 - 35</option>
-        <option value="peek">36 - 49</option>
-        <option value="elders">Above 50</option>
-      </select>
-      {errors.age && (
-        <span className="alert-danger">This field is required</span>
-      )}
-      <br />
-      <br />
-      <button type="submit">Register</button>
-    </form>
-
-    <Link to={"/"} replace={true}>
-      Home
-    </Link>
-
-
-    {/* Signup footer*/}
-    
-      <Footer />
-
-    
-  </div>
-);
-
-}
-
-
+ 
 
 /**
  * Login page
@@ -355,20 +293,20 @@ return (
  * email and username
  */
 
-class Login extends Component{
+export class Login extends Component{
   constructor(){
     super()
     this.state = {
       email : "",
       password : ""
     }
-    this.onchange = this.onChange.bind(this)
+   // this.onChange = this.onChange.bind(this)
     this.onSubmit = this.onSubmit.bind(this)
   }
 
-  onChange(e){
+  /*onChange(e){
     this.setState ({[e.target.name] : e.target.value})
-  }
+  }  */
 
   onSubmit(e){
     e.preventDefault()
@@ -380,7 +318,7 @@ class Login extends Component{
     login(user).then(res =>{
 
       if (res){
-        this.props.history.push(`/Profile`)
+        this.props.history.push('/Profile')
 
       }
 
@@ -429,8 +367,8 @@ class Login extends Component{
               <label htmlFor="email">Enter your email</label> &nbsp;&nbsp;
 
               <Field type="email" 
-              name="email" onChange={this.onChange}
-               value={this.state.email}
+              name="email"
+               //value={this.state.email}
                placeholder="xyz@yahoo.com"
               />
 
@@ -444,8 +382,8 @@ class Login extends Component{
 
               <label htmlFor="password">Enter your password</label> &nbsp;&nbsp;
               <Field type="password" name="password" 
-                 value={this.state.password}
-                 onChange = {this.onChange}
+                 //value={this.state.password}
+                 //onChange = {this.onChange}
               />
               <ErrorMessage name="password" component="div" />
               <br />
@@ -469,37 +407,5 @@ class Login extends Component{
   }
 }
 
-export default Login ;
 
-
-/**
- * About page
- * FAQs to be included later
- */
-
- export const About = () => {
-   return (
-     <div className="container">
-       <h1>
-         This is my about page{" "}
-         <Link to={"/HomepageUI"} action="replace">
-           {" "}
-           Home{" "}
-         </Link>
-       </h1>
-
-       <Footer />
-     </div>
-   );
- };
-
-
-/*
-ReactDOM.render(<What to be rendered>, (where to render)) is not used with functional components
-
- reactDom.render(<Signup />, document.getElementById("root"));
- reactDom.render(<Login />, document.getElementById("root"));
- reactDom.render(<About />, document.getElementById("root"));
-
-*/
 

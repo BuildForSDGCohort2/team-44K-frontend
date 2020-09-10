@@ -1,0 +1,32 @@
+//states
+this.onChange = this.onChange.bind(this);
+     this.onEmailChange = this.onEmailChange.bind(this);
+     this.onAgeChange = this.onAgeChange.bind(this);
+     this.onPasswordChange = this.onPasswordChange.bind(this);
+     this.onconfirm_passwordChange = this.onconfirm_passwordChange.bind(this);
+
+
+
+
+
+
+
+//handleChange events
+   onChange(e) {
+     this.setState({ [e.target.name]: e.target.value });
+   }
+
+   onEmailChange(e) {
+     this.setState({ email: e.target.value });
+   }
+
+   onAgeChange(e) {
+     this.setState({ age: e.target.value });
+   }
+
+   onPasswordChange(e) {
+     this.setState({ password: e.target.value });
+   }
+   onconfirm_passwordChange(e) {
+     this.setState({ confirm_password: e.target.value });
+   }

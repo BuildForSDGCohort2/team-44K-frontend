@@ -11,8 +11,6 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "d
 
 var register = function register(newUser) {
   return _axios["default"].post("users/register", {
-    first_name: newUser.first_name,
-    last_name: newUser.last_name,
     username: newUser.username,
     email: newUser.email,
     age: newUser.age,

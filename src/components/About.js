@@ -1,21 +1,27 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
-import '../bootsrap.css'
+import './bootstrap.css'
+import {HomepageUI} from '../Pages'
+import {Footer} from '../Pages'
 
 
 
-export const About = () => {
+const About = () => {
+
   return (
     <div className="container">
-      <h1>
-        This is my about page{" "}
-        <Link to={"/HomepageUI"} action="replace">
-          {" "}
-          Home{" "}
-        </Link>
-      </h1>
+      <div className="row ">
+        <div className="col-auto col-sm-12 col-md-12 col-lg-auto">
+          <h1 >
+            {time}
+            This is my about page
+          </h1>
+        </div>
+      </div>
 
       <Footer />
     </div>
   );
 };
+
+export default About;
