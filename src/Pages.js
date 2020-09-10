@@ -4,12 +4,16 @@ import * as Yup from 'yup';
 import "./bootstrap.css";
 import "./App.css";
 import "./Profile"
+import * as Icon from "react-bootstrap-icons";
 import { Formik, Field, Form, ErrorMessage  } from 'formik';
 import {register, login} from './components/userFunctions';
-import About from './components/About'
 import compass from './Images/compass.jpg';
 import android from './Images/android.jpg';
 import Logopit from './Images/Logopit.png';
+import facebook from './Images/facebook.png';
+import github from './Images/github.png';
+import linkedin from './Images/linkedin.png';
+import twitter from './Images/twitter.png'
 
 
 
@@ -54,7 +58,7 @@ export const Header = (props) => {
                 Signup
               </Link>
               |<Link to={"/Login"} className="">Login</Link> |
-              <Link to={"./About"} className="">About</Link>
+              <Link to={"/About"} className="">About</Link>
             </span>
           </h5>
         </div>
@@ -63,7 +67,7 @@ export const Header = (props) => {
           <Route exact path={"/"} component={HomepageUI} />
           <Route exact path={"/Signup"} component={Signup} />
           <Route exact path={"/Login"} component={Login} />
-          <Route path={"./About"} component={About} exact={true} />
+          <Route exact path={"/About"} component={About} />
         </Switch>
       </div>
     </div>
@@ -407,5 +411,86 @@ export class Login extends Component{
   }
 }
 
+/**
+ * 
+ * About Page
+ */
+
+export const About = () =>{
+
+  return (
+    <div className="container conta">
+      <div className="row ">
+        <div className="col-auto col-sm-12 col-md-12 col-lg-12">
+          <div className="aboutHeader">
+            <h1>This is my about page</h1>
+          </div>
+          <br />
+          <br />
+
+          <div className="content">
+            <p className="bg-warning text-center text-capitalize text">
+              This page is under construction!! Thanks for your patience
+              </p>
+          </div>
+          <br />
+          <br />
+          <div className="contacts">
+            <h2 className="text-primary">Contact me using the social media handles below</h2> 
+            <ul>
+              <li>
+                <p>
+                  <a
+                    href="https://twitter.com/intent/tweet?screen_name=SamuelWanjare&ref_src=twsrc%5Etfw"
+                    class="twitter-mention-button"
+                    data-show-count="true"
+                  >
+                    Tweet to @TwitterDev
+                  </a>
+                  {
+                    <script
+                      async
+                      src="https://platform.twitter.com/widgets.js"
+                      charset="utf-8"
+                    ></script>
+                  }
+                </p>
+              </li>
+              <li>
+                <a href="https://web.facebook.com/">
+                  <img src={facebook} alt="facebook" className="rounded icon" />
+                </a>
+              </li>
+              <br />
+              <li>
+                <a href="https://github.com/Magpiny">
+                  <img src={github} alt="github" className="rounded icon" />
+                </a>
+              </li>
+              <br />
+              <li>
+                <a href="https://www.linkedin.com/in/samuel-wanjare-179922ba/">
+                  <img src={linkedin} alt="linkedIn" className="rounded icon" />
+                </a>
+              </li>
+              <br />
+              <li>
+                <a href="https://twitter.com/SamuelWanjare/">
+                  <img src={twitter} alt="twitter" className="rounded icon" />
+                </a>
+              </li>
+              <br />
+              <li>
+                <Icon.Share />
+              </li>
+            </ul>
+          </div>
+
+          <Footer />
+        </div>
+      </div>
+    </div>
+  );
+}
 
 

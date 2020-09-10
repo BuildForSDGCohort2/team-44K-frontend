@@ -54,3 +54,23 @@
   border-radius: 5%;
   border-color: rgb(192, 8, 39);
 }
+
+.contacts{
+  background-color: gray;
+}
+
+.aboutHeader{
+  background-image: url(./Images/hands-600497_1920.jpg);
+  height: 30vh;
+  width: 100vh;
+}
+
+.conta{
+  background-image: url(./Images/hands-600497_1920.jpg);
+  
+}
+
+.icon{
+  width: 3rem;
+  height: 3rem;
+}
