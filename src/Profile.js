@@ -3,6 +3,7 @@ import jwt_decode from 'jwt-decode'
 import { Footer } from './Pages';
 import './Profile.css'
 import "./bootstrap.css";
+import Axios from 'axios';
 
 
 
@@ -11,20 +12,24 @@ class Profile extends Component {
     constructor(){
         super()
         this.state = {
-            first_name : "",
-            last_name : "",
-            email : ""
+           username :[],
+            email : []
         }
     }
 
     componentDidMount(){
+      Axios.get("http://localhost:5000/user/");
         const token = localStorage.usertoken
         const decoded = jwt_decode(token)
-        this.setState({
-            first_name : decoded.first_name,
-            last_name : decoded.last_name,
-            email : decoded.email
+        .then(response=>{
+          this.setState({
+            
+            username: decoded.username,
+            email: decoded.email,
+
+          });
         })
+        
     }
     render(){
         return (
@@ -39,8 +44,7 @@ class Profile extends Component {
 
                 {/* User bio */}
                 <div>
-                  <p>{this.state.first_name}</p>
-                  <p>{this.state.last_name}</p>
+                  <p>{this.state.username}</p>
                   <p>{this.state.email}</p>
                 </div>
               </div>

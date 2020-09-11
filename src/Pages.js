@@ -174,6 +174,7 @@ export const HomepageUI = () => {
      register(user).then((res) => {
        if (res) {
          this.props.history.push("/Login");
+         window.location('/Login')
        }
      });
    }
@@ -192,10 +193,10 @@ export const HomepageUI = () => {
                confirm_password: "",
              }}
              validationSchema={signUpSchema}
-             onSubmit={(values) => console.log(values)}
+             onSubmit={this.onSubmit}
            >
-             {({ handleSubmit }) => (
-               <Form className="mx-auto block">
+             {() => (
+               <Form className="mx-auto block" onSubmit={this.onSubmit}>
                  <label htmlFor="username">Enter your username</label>
                  <Field
                    type="text"
