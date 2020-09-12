@@ -10,7 +10,7 @@ var _axios = _interopRequireDefault(require("axios"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 var register = function register(newUser) {
-  return _axios["default"].post("users/register", {
+  return _axios["default"].post("/users/register", {
     username: newUser.username,
     email: newUser.email,
     age: newUser.age,
@@ -23,7 +23,7 @@ var register = function register(newUser) {
 exports.register = register;
 
 var login = function login(user) {
-  return _axios["default"].post('users/login', {
+  return _axios["default"].post('/users/login', {
     email: user.email,
     password: user.password
   }).then(function (res) {
