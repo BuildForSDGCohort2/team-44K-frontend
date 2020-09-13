@@ -427,6 +427,10 @@ export const About = () =>{
             <h1>This is my about page</h1>
           </div>
           <br />
+          <div>
+            <h1>Introduction</h1>
+            <p></p>
+          </div>
           <br />
 
           <div className="content">
