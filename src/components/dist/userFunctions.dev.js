@@ -9,6 +9,7 @@ var _axios = _interopRequireDefault(require("axios"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
+//import React from 'react';
 var register = function register(newUser) {
   return _axios["default"].post("/users/register", {
     username: newUser.username,
@@ -16,6 +17,7 @@ var register = function register(newUser) {
     age: newUser.age,
     password: newUser.password
   }).then(function (res) {
+    console.log(res.data);
     console.log("Registered");
   });
 };

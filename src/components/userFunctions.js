@@ -1,4 +1,5 @@
-import axios from 'axios'
+//import React from 'react';
+import axios from 'axios';
 
 
 export const register = newUser => {
@@ -11,6 +12,7 @@ export const register = newUser => {
         password: newUser.password,
       })
       .then((res) => {
+        console.log(res.data);
         console.log("Registered");
       });
 }

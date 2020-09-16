@@ -14,6 +14,7 @@ import facebook from './Images/facebook.png';
 import github from './Images/github.png';
 import linkedin from './Images/linkedin.png';
 import twitter from './Images/twitter.png'
+//import Axios from "axios";
 
 
 
@@ -147,7 +148,7 @@ export const HomepageUI = () => {
      .oneOf([Yup.ref("password"), null], "Passwords must match!"),
  });
 
- export class Signup extends Component {
+ export class Signup extends React.Component {
    constructor(props) {
      super(props);
      this.state = {
@@ -160,23 +161,28 @@ export const HomepageUI = () => {
      
      this.onSubmit = this.onSubmit.bind(this);
    }
+
    
+   
+
    //handleSubmit events
-    onSubmit(e) {
-     e.preventDefault();
+   onSubmit(values) {
 
      const user = {
-       username: this.state.username,
-       email: this.state.email,
-       age: this.state.age,
-       password: this.state.password,
+       username: values.username,
+       email: values.email,
+       age: values.age,
+       password: values.password,
      };
+     console.log(user);
+
      register(user).then((res) => {
        if (res) {
          this.props.history.push("/Login");
-         window.location('/Login')
+         window.location('/Login');
+         
        }
-     });
+     });  
    }
 
    render() {
@@ -195,13 +201,15 @@ export const HomepageUI = () => {
              validationSchema={signUpSchema}
              onSubmit={this.onSubmit}
            >
-             {() => (
-               <Form className="mx-auto block" onSubmit={this.onSubmit}>
+             {(formik) => (
+               <Form className="mx-auto block" onSubmit={ formik.handleSubmit }>
                  <label htmlFor="username">Enter your username</label>
                  <Field
                    type="text"
                    name="username"
                    placeholder="john"
+                 
+                   
                    autoComplete="true"
                  />
 
@@ -215,7 +223,13 @@ export const HomepageUI = () => {
 
                  <label htmlFor="email">Email Address</label>
 
-                 <Field type="email" name="email" placeholder="xyz@yahoo.com" />
+                 <Field
+                   type="email"
+                   name="email"
+                   placeholder="xyz@yahoo.com"
+                 
+                   
+                 />
 
                  <ErrorMessage
                    name="email"
@@ -228,7 +242,13 @@ export const HomepageUI = () => {
 
                  <label htmlFor="age">Age</label>
 
-                 <Field as="select" type="text" name="age">
+                 <Field
+                   as="select"
+                   type="text"
+                   name="age"
+                 
+                   
+                 >
                    <option value="18-24">18-24</option>
                    <option value="25-34">25-34</option>
                    <option value="35-50">35-50</option>
@@ -249,6 +269,8 @@ export const HomepageUI = () => {
                    type="password"
                    name="password"
                    placeholder="xyz@fa3_89-"
+                  
+                   
                  />
 
                  <ErrorMessage
@@ -265,6 +287,8 @@ export const HomepageUI = () => {
                    type="password"
                    name="confirm_password"
                    placeholder=""
+                   
+                   
                  />
 
                  <ErrorMessage
@@ -305,13 +329,10 @@ export class Login extends Component{
       email : "",
       password : ""
     }
-   // this.onChange = this.onChange.bind(this)
+   
     this.onSubmit = this.onSubmit.bind(this)
   }
 
-  /*onChange(e){
-    this.setState ({[e.target.name] : e.target.value})
-  }  */
 
   onSubmit(e){
     e.preventDefault()
@@ -366,7 +387,7 @@ export class Login extends Component{
        */
 
         >
-          {({ isSubmitting }) => (
+          {(isSubmitting) => (
             <Form validate onSubmit={this.onSubmit} className="form-control-sm align-content-center mt-5">
 
               <label htmlFor="email">Enter your email</label> &nbsp;&nbsp;

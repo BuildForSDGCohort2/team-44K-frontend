@@ -78,6 +78,26 @@ export const FunHotspots = (props) => {
   )
 }
 
+//Health centres gmaps function
+export const HealthCentres = (props) => {
+
+  return(
+    <div>
+    clubs
+    </div>
+  )
+}
+
+//Tourist Sites function
+export const TouristSites = (props) => {
+
+  return(
+    <div>
+    clubs
+    </div>
+  )
+}
+
 
 //Places accessibility function
 export const Places = (props) => {
@@ -90,15 +110,8 @@ export const Places = (props) => {
 }
 
 
-//Hotel accessibility function
-export const Hotels = (props) => {
 
-  return(
-    <div>
 
-    </div>
-  )
-}
 
 
 class Profile extends Component {
@@ -233,19 +246,4 @@ export default Profile;
 
 
 
- <div className="row">
-   {/* 1st column */}
-   <div className="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
-     
-   </div>
-
-   
-
-   {/* 2nd column */}
-   <div className="col-8 col-sm-8 col-md-8 col-lg-8 col-xl-8">
-     <div className="App-header">
-       <h3>In your area today</h3>
-       <hr />
-     </div>
-   </div>
- </div>;
+ 
