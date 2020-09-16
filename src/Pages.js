@@ -138,7 +138,7 @@ export const HomepageUI = () => {
 
 //Validation Schema
  const signUpSchema = Yup.object({
-   username: Yup.string().max(25, "Username too long!").required("Username is Required"),
+   username: Yup.string().min(2).max(25, "Username too long!").required("Username is Required"),
    email: Yup.string().email().required("Email address required!"),
    age : Yup.string().notRequired(),
    password: Yup.string().min(8, "password too short!").required("Password is required!"),
@@ -179,7 +179,7 @@ export const HomepageUI = () => {
      register(user).then((res) => {
        if (res) {
          this.props.history.push("/Login");
-         window.location('/Login');
+         //window.location('/Login');
          
        }
      });  
