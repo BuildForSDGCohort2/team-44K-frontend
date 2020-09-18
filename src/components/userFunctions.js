@@ -4,8 +4,7 @@ import axios from 'axios';
 
 export const register = newUser => {
     return axios
-      .post("/users/register", {
-        
+      .post("http://localhost:5000/users/register", {
         username: newUser.username,
         email: newUser.email,
         age: newUser.age,
@@ -18,15 +17,16 @@ export const register = newUser => {
 }
 
 export const login = user => {
-    return axios.post('/users/login', {
-        email:user.email,
-        password: user.password
-    })
-    .then(res => {
-        localStorage.setItem('usertoken', res.data)
-        return res.data
-    })
-    .catch(err => {
-        console.log(err)
-    })
+    return axios
+      .post("http://localhost:5000/users/login", {
+        email: user.email,
+        password: user.password,
+      })
+      .then((res) => {
+        localStorage.setItem("usertoken", res.data);
+        return res.data;
+      })
+      .catch((err) => {
+        console.log(err);
+      });
 }

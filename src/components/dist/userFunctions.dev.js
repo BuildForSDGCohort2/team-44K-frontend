@@ -11,7 +11,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "d
 
 //import React from 'react';
 var register = function register(newUser) {
-  return _axios["default"].post("/users/register", {
+  return _axios["default"].post("http://localhost:5000/users/register", {
     username: newUser.username,
     email: newUser.email,
     age: newUser.age,
@@ -25,11 +25,11 @@ var register = function register(newUser) {
 exports.register = register;
 
 var login = function login(user) {
-  return _axios["default"].post('/users/login', {
+  return _axios["default"].post("http://localhost:5000/users/login", {
     email: user.email,
     password: user.password
   }).then(function (res) {
-    localStorage.setItem('usertoken', res.data);
+    localStorage.setItem("usertoken", res.data);
     return res.data;
   })["catch"](function (err) {
     console.log(err);

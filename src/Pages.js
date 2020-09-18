@@ -131,8 +131,8 @@ export const HomepageUI = () => {
 
 
 /**
- * Signup page settings goes here
- * 
+ * The signup component!!
+ * Signup page styles & settings goes here
  * 
  */
 
@@ -140,7 +140,7 @@ export const HomepageUI = () => {
  const signUpSchema = Yup.object({
    username: Yup.string().min(2).max(25, "Username too long!").required("Username is Required"),
    email: Yup.string().email().required("Email address required!"),
-   age : Yup.string().notRequired(),
+   age : Yup.string(),
    password: Yup.string().min(8, "password too short!").required("Password is required!"),
    confirm_password: Yup.string()
      .min(8)
@@ -177,11 +177,8 @@ export const HomepageUI = () => {
      console.log(user);
 
      register(user).then((res) => {
-       if (res) {
-         this.props.history.push("/Login");
-         //window.location('/Login');
-         
-       }
+        this.props.history.push("login");
+           
      });  
    }
 
@@ -334,19 +331,15 @@ export class Login extends Component{
   }
 
 
-  onSubmit(e){
-    e.preventDefault()
-
+  onSubmit(values){
+    //e.preventDefault()
     const user = {
-      email : this.state.email,
-      password : this.state.password
+      email : values.email,
+      password : values.password
     }
     login(user).then(res =>{
-
-      if (res){
-        this.props.history.push('/Profile')
-
-      }
+      console.log(res.data);
+      this.props.history.push("Profile");
 
     })
   }
@@ -364,7 +357,7 @@ export class Login extends Component{
 
       <div className="bg-gray  form-control-sm ">
         <Formik
-          className=""
+          
           initialValues={{ email: "", password: "" }}
           validate={(values) => {
             const errors = {};
@@ -387,31 +380,31 @@ export class Login extends Component{
        */
 
         >
-          {(isSubmitting) => (
-            <Form validate onSubmit={this.onSubmit} className="form-control-sm align-content-center mt-5">
+          {(values, handleSubmit, isSubmitting) => (
+            <Form validate="true" onSubmit={handleSubmit} className="form-control-sm align-content-center mt-5">
 
               <label htmlFor="email">Enter your email</label> &nbsp;&nbsp;
 
-              <Field type="email" 
+              <Field 
+              type="email" 
               name="email"
-               //value={this.state.email}
                placeholder="xyz@yahoo.com"
+               value={values.email}
               />
 
               <ErrorMessage
                 name="email"
-                className="alert-danger"
+                className="alert alert-danger"
                 component="div"
               />
               <br />
               <br />
 
               <label htmlFor="password">Enter your password</label> &nbsp;&nbsp;
-              <Field type="password" name="password" 
-                 //value={this.state.password}
-                 //onChange = {this.onChange}
+              <Field type="password" name="password" value={values.password}
+                
               />
-              <ErrorMessage name="password" component="div" />
+              <ErrorMessage name="password" component="div" className="alert alert-danger" />
               <br />
               <br />
 
