@@ -11,8 +11,8 @@ export const register = newUser => {
         password: newUser.password,
       })
       .then((res) => {
-        console.log(res.data);
         console.log("Registered");
+        return res.data;
       });
 }
 

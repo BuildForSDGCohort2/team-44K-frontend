@@ -13,8 +13,7 @@ import Logopit from './Images/Logopit.png';
 import facebook from './Images/facebook.png';
 import github from './Images/github.png';
 import linkedin from './Images/linkedin.png';
-import twitter from './Images/twitter.png'
-//import Axios from "axios";
+import twitter from './Images/twitter.png';
 
 
 
@@ -314,7 +313,7 @@ export const HomepageUI = () => {
  
 
 /**
- * Login page
+ * Login page component
  * Details to be captured includes
  * email and username
  */
@@ -337,6 +336,7 @@ export class Login extends Component{
       email : values.email,
       password : values.password
     }
+    console.log(user);
     login(user).then(res =>{
       console.log(res.data);
       this.props.history.push("Profile");
@@ -359,52 +359,19 @@ export class Login extends Component{
         <Formik
           
           initialValues={{ email: "", password: "" }}
-          validate={(values) => {
-            const errors = {};
-            if (!values.email) {
-              errors.email = "Required";
-            } else if (
-              !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
-            ) {
-              errors.email = "Invalid email address! ";
-            }
-            return errors;
-          }}
-          /*
-          onSubmit={(values, { setSubmitting }) => {
-            setTimeout(() => {
-              alert(JSON.stringify(values, null, 2));
-              setSubmitting(false);
-            }, 2000);
-          }}
-       */
-
+          onSubmit = {this.onSubmit}
         >
-          {(values, handleSubmit, isSubmitting) => (
-            <Form validate="true" onSubmit={handleSubmit} className="form-control-sm align-content-center mt-5">
+          {(handleSubmit, isSubmitting) => (
+            <Form onSubmit={handleSubmit} className="form-control-sm align-content-center mt-5">
 
               <label htmlFor="email">Enter your email</label> &nbsp;&nbsp;
 
-              <Field 
-              type="email" 
-              name="email"
-               placeholder="xyz@yahoo.com"
-               value={values.email}
-              />
-
-              <ErrorMessage
-                name="email"
-                className="alert alert-danger"
-                component="div"
-              />
+              <Field type="email" name="email" placeholder="xyz@yahoo.com" />
               <br />
               <br />
 
               <label htmlFor="password">Enter your password</label> &nbsp;&nbsp;
-              <Field type="password" name="password" value={values.password}
-                
-              />
-              <ErrorMessage name="password" component="div" className="alert alert-danger" />
+              <Field type="password" name="password" value={values.password} />
               <br />
               <br />
 

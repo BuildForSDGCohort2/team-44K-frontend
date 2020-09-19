@@ -17,8 +17,8 @@ var register = function register(newUser) {
     age: newUser.age,
     password: newUser.password
   }).then(function (res) {
-    console.log(res.data);
     console.log("Registered");
+    return res.data;
   });
 };
 
