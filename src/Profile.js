@@ -105,6 +105,7 @@ export const Places = (props) => {
   return(
     <div>
      Places
+     <p>Hello there</p>
     </div>
   )
 }
@@ -114,7 +115,7 @@ export const Places = (props) => {
 
 
 
-class Profile extends Component {
+class Profile extends React.Component {
 
     constructor(){
         super()

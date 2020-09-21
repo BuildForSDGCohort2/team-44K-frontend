@@ -338,7 +338,7 @@ export class Login extends Component{
     }
     console.log(user);
     login(user).then(res =>{
-      console.log(res.data);
+      
       this.props.history.push("Profile");
 
     })
@@ -362,7 +362,7 @@ export class Login extends Component{
           onSubmit = {this.onSubmit}
         >
           {(handleSubmit, isSubmitting) => (
-            <Form onSubmit={handleSubmit} className="form-control-sm align-content-center mt-5">
+            <Form className="form-control-sm align-content-center mt-5">
 
               <label htmlFor="email">Enter your email</label> &nbsp;&nbsp;
 
@@ -371,7 +371,7 @@ export class Login extends Component{
               <br />
 
               <label htmlFor="password">Enter your password</label> &nbsp;&nbsp;
-              <Field type="password" name="password" value={values.password} />
+              <Field type="password" name="password" />
               <br />
               <br />
 
