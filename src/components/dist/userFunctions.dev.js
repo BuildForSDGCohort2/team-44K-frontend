@@ -29,6 +29,7 @@ var login = function login(user) {
     email: user.email,
     password: user.password
   }).then(function (res) {
+    //localStorage.removeItem("usertoken", res.data);
     localStorage.setItem("usertoken", res.data);
     return res.data;
   })["catch"](function (err) {

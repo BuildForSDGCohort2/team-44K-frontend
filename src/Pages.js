@@ -3,7 +3,7 @@ import { Link, Route, Switch } from "react-router-dom";
 import * as Yup from 'yup';
 import "./bootstrap.css";
 import "./App.css";
-import "./Profile"
+import Profile from  "./Profile"
 import * as Icon from "react-bootstrap-icons";
 import { Formik, Field, Form, ErrorMessage  } from 'formik';
 import {register, login} from './components/userFunctions';
@@ -50,15 +50,21 @@ export const Header = (props) => {
             />
             <p className="text-center">Hello and welcome to findIt...</p>
 
-            <Link to={"/"} replace={true} className="">
+            <Link to={"/"} replace={true} >
               Home
             </Link>
             <span className="float-right">
-              <Link to={"/Signup"} replace={true} >
+              <Link to={"/Signup"} replace={true}>
                 Signup
               </Link>
-              |<Link to={"/Login"} className="">Login</Link> |
-              <Link to={"/About"} className="">About</Link>
+              |
+              <Link to={"/Login"} >
+                Login
+              </Link>{" "}
+              |
+              <Link to={"/About"} >
+                About
+              </Link>
             </span>
           </h5>
         </div>
@@ -68,6 +74,7 @@ export const Header = (props) => {
           <Route exact path={"/Signup"} component={Signup} />
           <Route exact path={"/Login"} component={Login} />
           <Route exact path={"/About"} component={About} />
+          <Route exact path={"/Profile"} component={Profile} />
         </Switch>
       </div>
     </div>
@@ -147,7 +154,7 @@ export const HomepageUI = () => {
      .oneOf([Yup.ref("password"), null], "Passwords must match!"),
  });
 
- export class Signup extends React.Component {
+ export class Signup extends Component {
    constructor(props) {
      super(props);
      this.state = {
@@ -241,8 +248,7 @@ export const HomepageUI = () => {
                  <Field
                    as="select"
                    type="text"
-                   name="age"
-                 
+                   name="age"   
                    
                  >
                    <option value="18-24">18-24</option>
@@ -319,19 +325,19 @@ export const HomepageUI = () => {
  */
 
 export class Login extends Component{
-  constructor(){
-    super()
+  constructor(props){
+    super(props);
     this.state = {
       email : "",
       password : ""
-    }
+    };
    
-    this.onSubmit = this.onSubmit.bind(this)
+    this.onSubmit = this.onSubmit.bind(this);
   }
 
 
   onSubmit(values){
-    //e.preventDefault()
+    
     const user = {
       email : values.email,
       password : values.password
@@ -339,7 +345,7 @@ export class Login extends Component{
     console.log(user);
     login(user).then(res =>{
       
-      this.props.history.push("Profile");
+      this.props.history.push("/Profile");
 
     })
   }
@@ -348,48 +354,45 @@ export class Login extends Component{
   render(){
 
 
-    return(
-      
+    return (
       <div className="container ">
-      <h1 className="mb-3">Kindly login {dateTime} </h1>
+        <h1 className="mb-3">Kindly login {setTimeout(() => dateTime, 1000)} </h1>
 
-      {/* My form goes here */}
+        {/* My form goes here */}
 
-      <div className="bg-gray  form-control-sm ">
-        <Formik
-          
-          initialValues={{ email: "", password: "" }}
-          onSubmit = {this.onSubmit}
-        >
-          {(handleSubmit, isSubmitting) => (
-            <Form className="form-control-sm align-content-center mt-5">
-
-              <label htmlFor="email">Enter your email</label> &nbsp;&nbsp;
-
-              <Field type="email" name="email" placeholder="xyz@yahoo.com" />
-              <br />
-              <br />
-
-              <label htmlFor="password">Enter your password</label> &nbsp;&nbsp;
-              <Field type="password" name="password" />
-              <br />
-              <br />
-
-              <button
-                type="submit"
-                className="btn btn-primary btn-sm btn-outline-info "
-                disabled={isSubmitting}
+        <div className="bg-gray  form-control-sm ">
+          <Formik
+            initialValues={{ email: "", password: "" }}
+            onSubmit={this.onSubmit}
+          >
+            {(formik) => (
+              <Form
+                onSubmit={formik.handleSubmit}
+                className="form-control-sm align-content-center mt-5"
               >
-                Login
-              </button>
-            </Form>
-          )}
-        </Formik>
+                <label htmlFor="email">Enter your email</label> &nbsp;&nbsp;
+                <Field type="email" name="email" placeholder="xyz@yahoo.com" />
+                <br />
+                <br />
+                <label htmlFor="password">Enter your password</label>{" "}
+                &nbsp;&nbsp;
+                <Field type="password" name="password" />
+                <br />
+                <br />
+                <button
+                  type="submit"
+                  className="btn btn-warning btn-md btn-outline-info "
+                  disabled={formik.isSubmitting}
+                >
+                  Login
+                </button>
+              </Form>
+            )}
+          </Formik>
+        </div>
+        <Footer />
       </div>
-      <Footer />
-    </div>
-
-    )
+    );
   }
 }
 
@@ -417,28 +420,29 @@ export const About = () =>{
           <div className="content">
             <p className="bg-warning text-center text-capitalize text">
               This page is under construction!! Thanks for your patience
-              </p>
+            </p>
           </div>
           <br />
           <br />
           <div className="contacts">
-            <h2 className="text-primary">Contact me using the social media handles below</h2> 
+            <h2 className="text-warning">
+              Contact me using the social media handles below
+            </h2>
             <ul>
               <li>
                 <p>
                   <a
                     href="https://twitter.com/intent/tweet?screen_name=SamuelWanjare&ref_src=twsrc%5Etfw"
-                    class="twitter-mention-button"
+                    className="twitter-mention-button"
                     data-show-count="true"
                   >
-                    Tweet to @TwitterDev
+                    Tweet to @SamuelWanjare
                   </a>
                   {
-                    <script
-                      async
-                      src="https://platform.twitter.com/widgets.js"
+                    <script>
+                      async src="https://platform.twitter.com/widgets.js"
                       charset="utf-8"
-                    ></script>
+                    </script>
                   }
                 </p>
               </li>
@@ -447,25 +451,25 @@ export const About = () =>{
                   <img src={facebook} alt="facebook" className="rounded icon" />
                 </a>
               </li>
-              <br />
+
               <li>
                 <a href="https://github.com/Magpiny">
                   <img src={github} alt="github" className="rounded icon" />
                 </a>
               </li>
-              <br />
+
               <li>
                 <a href="https://www.linkedin.com/in/samuel-wanjare-179922ba/">
                   <img src={linkedin} alt="linkedIn" className="rounded icon" />
                 </a>
               </li>
-              <br />
+
               <li>
                 <a href="https://twitter.com/SamuelWanjare/">
                   <img src={twitter} alt="twitter" className="rounded icon" />
                 </a>
               </li>
-              <br />
+
               <li>
                 <Icon.Share />
               </li>
@@ -478,5 +482,4 @@ export const About = () =>{
     </div>
   );
 }
-
 

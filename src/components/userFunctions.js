@@ -23,6 +23,7 @@ export const login = user => {
         password: user.password,
       })
       .then((res) => {
+        //localStorage.removeItem("usertoken", res.data);
         localStorage.setItem("usertoken", res.data);
         return res.data;
       })

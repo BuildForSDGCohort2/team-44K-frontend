@@ -1,12 +1,12 @@
 import React, {Component} from 'react';
-import jwt_decode from 'jwt-decode'
+import jwt_decode from 'jwt-decode';
 import { Footer } from './Pages';
-import './Profile.css'
+import './Profile.css';
 import "./bootstrap.css";
 import Axios from 'axios';
 
 //Display picture from the database
-export const DisplayPicture = (props) => {
+const DisplayPicture = (props) => {
 
   return (
     <div>
@@ -16,17 +16,17 @@ export const DisplayPicture = (props) => {
 }
 
 //Display user bio
-export const UserBio = (props) => {
-  return(
-  <div>
-    usernam and email displayed also status added 
-
-  </div>
+const UserBio = (props) => {
+  return (
+    <div className="container">
+      BioB
+    </div>
+    
   );
 };
 
 //Display links to user chat Groups
-export const Cubes = (props) => {
+const Cubes = (props) => {
 
   return(
     <div>
@@ -36,7 +36,7 @@ export const Cubes = (props) => {
 }
 
 //Display user profile header
-export const ProfileHeader = (props) => {
+const ProfileHeader = (props) => {
 
   return(
     <div>
@@ -48,7 +48,7 @@ export const ProfileHeader = (props) => {
 }
 
 //Hotel accessibility function
-export const Hotels = (props) => {
+const Hotels = (props) => {
 
   return(
     <div>
@@ -58,7 +58,7 @@ export const Hotels = (props) => {
 }
 
 //ShoppingCentres accessibility function
-export const ShoppingCentres = (props) => {
+const ShoppingCentres = (props) => {
 
   return(
     <div>
@@ -69,7 +69,7 @@ export const ShoppingCentres = (props) => {
 
 
 //Fun hotspots accessibility function
-export const FunHotspots = (props) => {
+const FunHotspots = (props) => {
 
   return(
     <div>
@@ -100,7 +100,7 @@ export const TouristSites = (props) => {
 
 
 //Places accessibility function
-export const Places = (props) => {
+const Places = (props) => {
 
   return(
     <div>
@@ -115,28 +115,32 @@ export const Places = (props) => {
 
 
 
-class Profile extends React.Component {
+class Profile extends Component {
 
-    constructor(){
-        super()
+    constructor(props){
+        super(props)
         this.state = {
-           username :[],
-            email : []
+           username :'',
+            email : ''
         }
     }
 
     componentDidMount(){
       Axios.get("http://localhost:5000/user/");
-        const token = localStorage.usertoken
-        const decoded = jwt_decode(token)
-        .then(response=>{
+        //localStorage.removeItem("token");
+        const token = localStorage.usertoken ;
+        
+        const decoded = jwt_decode(token, {header:true});
+        //localStorage.removeItem(decoded);
+        console.log(decoded);
+        
           this.setState({
             
             username: decoded.username,
             email: decoded.email,
 
-          });
-        })
+          }) ;
+      
         
     }
 
@@ -156,6 +160,11 @@ class Profile extends React.Component {
                 {/* User bio */}
                 <div className="ub">
                   <UserBio />
+                  <h4>Username</h4>
+                  <div>{this.state.username}</div>
+                  <br />
+                  <h4>Email</h4>
+                  <div>{this.state.email}</div>
                 </div>
 
                 <br />
