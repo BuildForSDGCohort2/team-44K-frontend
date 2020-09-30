@@ -18,14 +18,16 @@ export const register = newUser => {
 
 export const login = user => {
     return axios
-      .post("http://localhost:5000/users/login", {
+      .post("/users/login", {
         email: user.email,
         password: user.password,
       })
-      .then((res) => {
+      .then( async (res) => {
         //localStorage.removeItem("usertoken", res.data);
+        //let token = JSON.stringify(res.data) ;
         localStorage.setItem("usertoken", res.data);
         return res.data;
+        
       })
       .catch((err) => {
         console.log(err);

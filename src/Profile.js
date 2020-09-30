@@ -3,6 +3,7 @@ import jwt_decode from 'jwt-decode';
 import { Footer } from './Pages';
 import './Profile.css';
 import "./bootstrap.css";
+import * as Icon from "react-bootstrap-icons";
 import Axios from 'axios';
 
 //Display picture from the database
@@ -10,7 +11,7 @@ const DisplayPicture = (props) => {
 
   return (
     <div>
-      <p>A userX should have a dp but not a necessity </p>
+      <Icon.Person size={80} className="bg-info" />
     </div>
   );
 }
@@ -52,7 +53,8 @@ const Hotels = (props) => {
 
   return(
     <div>
- Villa Rosa Kempinski
+ <i className="bg-yellow">Restaurants <Icon.Shop color="pink" size = {30} /> </i>
+ 
     </div>
   )
 }
@@ -60,54 +62,63 @@ const Hotels = (props) => {
 //ShoppingCentres accessibility function
 const ShoppingCentres = (props) => {
 
-  return(
+  return (
     <div>
-   Tuskys Mall
+      <i className="bg-yellow">
+        Shopping Centres <Icon.Cart4 size={30} color="blue" />{" "}
+      </i>
     </div>
-  )
+  );
 }
 
 
 //Fun hotspots accessibility function
 const FunHotspots = (props) => {
 
-  return(
+  return (
     <div>
-    clubs
+      
+      <i className="bg-yellow">
+        Clubs <Icon.CupFill />{" "} <Icon.Speaker size={30} color="orange" />
+      </i>
     </div>
-  )
+  );
 }
 
 //Health centres gmaps function
 export const HealthCentres = (props) => {
 
-  return(
+  return (
     <div>
-    clubs
+      <Icon.FileMedicalFill color="red" size={30} />{" "}
     </div>
-  )
+  );
 }
 
 //Tourist Sites function
 export const TouristSites = (props) => {
 
-  return(
+  return (
     <div>
-    clubs
+      <i>Tourist Sites
+         <Icon.Building color="brown" size={30} />{" "}
+      </i>
     </div>
-  )
+  );
 }
 
 
 //Places accessibility function
 const Places = (props) => {
 
-  return(
+  return (
     <div>
-     Places
-     <p>Hello there</p>
+      <i>
+        <p className="bg-warning">Search for your favourite places...</p>
+        <Icon.Search color="purple" size={30} />{" "}
+      </i>
     </div>
-  )
+  );
 }
 
 

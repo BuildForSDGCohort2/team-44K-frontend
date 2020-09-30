@@ -25,13 +25,25 @@ var register = function register(newUser) {
 exports.register = register;
 
 var login = function login(user) {
-  return _axios["default"].post("http://localhost:5000/users/login", {
+  return _axios["default"].post("/users/login", {
     email: user.email,
     password: user.password
-  }).then(function (res) {
-    //localStorage.removeItem("usertoken", res.data);
-    localStorage.setItem("usertoken", res.data);
-    return res.data;
+  }).then(function _callee(res) {
+    return regeneratorRuntime.async(function _callee$(_context) {
+      while (1) {
+        switch (_context.prev = _context.next) {
+          case 0:
+            //localStorage.removeItem("usertoken", res.data);
+            //let token = JSON.stringify(res.data) ;
+            localStorage.setItem("usertoken", res.data);
+            return _context.abrupt("return", res.data);
+
+          case 2:
+          case "end":
+            return _context.stop();
+        }
+      }
+    });
   })["catch"](function (err) {
     console.log(err);
   });

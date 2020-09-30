@@ -39,7 +39,7 @@ export const Header = (props) => {
   return (
     <div className="container">
       <div className="row ">
-        <div className="col-12 col-sm-12 col-md-12 col-lg-12 jumbotron mt-5">
+        <div className="col-12 col-sm-12 col-md-12 col-lg-12 jumbotron mt-2">
           <h5 className="header">
             <img
               src={Logopit}
@@ -346,7 +346,7 @@ export class Login extends Component{
     login(user).then(res =>{
       
       this.props.history.push("/Profile");
-
+    
     })
   }
 
