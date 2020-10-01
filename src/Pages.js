@@ -14,6 +14,8 @@ import facebook from './Images/facebook.png';
 import github from './Images/github.png';
 import linkedin from './Images/linkedin.png';
 import twitter from './Images/twitter.png';
+import instagram from './Images/instagram.png';
+import whatsapp from './Images/whatsapp.png';
 
 
 
@@ -407,17 +409,17 @@ export const About = () =>{
     <div className="container conta">
       <div className="row ">
         <div className="col-auto col-sm-12 col-md-12 col-lg-12">
-          <div className="aboutHeader">
-            <h1>This is my about page</h1>
+          <div className="aboutHeader bg-gray">
+            <h1 className="text-center ab">Hello and welcome to findIt</h1>
           </div>
           <br />
           <div>
             <h1>Introduction</h1>
-            <p></p>
+            <p>findIt is </p>
           </div>
           <br />
 
-          <div className="content">
+          <div className="content footer">
             <p className="bg-warning text-center text-capitalize text">
               This page is under construction!! Thanks for your patience
             </p>
@@ -425,10 +427,10 @@ export const About = () =>{
           <br />
           <br />
           <div className="contacts">
-            <h2 className="text-warning">
-              Contact me using the social media handles below
-            </h2>
-            <ul>
+            <ul className="li">
+              <h2 className="text-warning">
+                Contact me using the social media handles below
+              </h2>
               <li>
                 <p>
                   <a
@@ -471,7 +473,16 @@ export const About = () =>{
               </li>
 
               <li>
-                <Icon.Share />
+                <a href="https://instagram.com/samuelwanjare/">
+                  <img src={instagram} alt="twitter" className="rounded icon" />
+                </a>
+              </li>
+
+              <li>
+                <a href="https://api.whatsapp.com/send?phone=254775863817&amp;text=Hi there! I have a question :)">Send Message
+
+                  <img src={whatsapp} alt="twitter" className="rounded icon" />
+                </a>
               </li>
             </ul>
           </div>
