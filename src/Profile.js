@@ -1,130 +1,23 @@
 import React, {Component} from 'react';
 import jwt_decode from 'jwt-decode';
-import { Footer } from './Pages';
 import './Profile.css';
 import "./bootstrap.css";
-import * as Icon from "react-bootstrap-icons";
 import Axios from 'axios';
 
-//Display picture from the database
-const DisplayPicture = (props) => {
-
-  return (
-    <div>
-      <Icon.Person size={80} className="bg-info" />
-    </div>
-  );
-}
-
-//Display user bio
-const UserBio = (props) => {
-  return (
-    <div className="container">
-      BioB
-    </div>
-    
-  );
-};
-
-//Display links to user chat Groups
-const Cubes = (props) => {
-
-  return(
-    <div>
-     cubes
-    </div>
-  )
-}
-
-//Display user profile header
-const ProfileHeader = (props) => {
-
-  return(
-    <div>
-   In your timeline today
-   Time function from momentjs
-   Weather api if time allows
-    </div>
-  )
-}
-
-//Hotel accessibility function
-const Hotels = (props) => {
-
-  return(
-    <div>
- <i className="bg-yellow">Restaurants <Icon.Shop color="pink" size = {30} /> </i>
- 
-    </div>
-  )
-}
-
-//ShoppingCentres accessibility function
-const ShoppingCentres = (props) => {
-
-  return (
-    <div>
-      <i className="bg-yellow">
-        Shopping Centres <Icon.Cart4 size={30} color="blue" />{" "}
-      </i>
-    </div>
-  );
-}
+import DisplayPicture from './ProfileComponents/DisplayPicture.js';
+import UserBio from './ProfileComponents/UserBio.js';
+import Cubes from './ProfileComponents/Cubes';
+import ProfileHeader from './ProfileComponents/ProfileHeader.js';
+import Hotels from './ProfileComponents/Hotels';
+import ShoppingCentres from './ProfileComponents/ShoppingCentres';
+import HealthCentres from './ProfileComponents/HealthCentres';
+import TouristSites from './ProfileComponents/TouristSites';
+import {FunHotspots}from './ProfileComponents/FunHotspot.js';
+import Places from './ProfileComponents/Places';
+import { Footer } from "./Pages";
 
 
-//Fun hotspots accessibility function
-const FunHotspots = (props) => {
-
-  return (
-    <div>
-      
-      <i className="bg-yellow">
-        Clubs <Icon.CupFill />{" "} <Icon.Speaker size={30} color="orange" />
-      </i>
-    </div>
-  );
-}
-
-//Health centres gmaps function
-export const HealthCentres = (props) => {
-
-  return (
-    <div>
-      <Icon.FileMedicalFill color="red" size={30} />{" "}
-    </div>
-  );
-}
-
-//Tourist Sites function
-export const TouristSites = (props) => {
-
-  return (
-    <div>
-      <i>Tourist Sites
-         <Icon.Building color="brown" size={30} />{" "}
-      </i>
-    </div>
-  );
-}
-
-
-//Places accessibility function
-const Places = (props) => {
-
-  return (
-    <div>
-      <i>
-        <p className="bg-warning">Search for your favourite places...</p>
-        <Icon.Search color="purple" size={30} />{" "}
-      </i>
-    </div>
-  );
-}
-
-
-
-
-
+//User profile's page
 
 class Profile extends Component {
 
