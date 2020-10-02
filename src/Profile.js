@@ -4,6 +4,7 @@ import './Profile.css';
 import "./bootstrap.css";
 import Axios from 'axios';
 
+//My profile components
 import DisplayPicture from './ProfileComponents/DisplayPicture.js';
 import UserBio from './ProfileComponents/UserBio.js';
 import Cubes from './ProfileComponents/Cubes';
@@ -17,7 +18,11 @@ import Places from './ProfileComponents/Places';
 import { Footer } from "./Pages";
 
 
-//User profile's page
+
+/**
+ * User Profile Page
+ * Profile components 
+ */
 
 class Profile extends Component {
 
@@ -53,7 +58,7 @@ class Profile extends Component {
           <div className="container">
             <div className="row">
               {/* first column */}
-              <div className="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-auto">
+              <div className="col-auto col-sm-4 col-md-4 col-lg-4 col-xl-4">
                 {/* User display picture */}
                 <div className="dp">
                   <DisplayPicture />
@@ -83,7 +88,7 @@ class Profile extends Component {
               </div>
 
               {/* Second column */}
-              <div className="col-8 col-sm-8 col-md-8 col-lg-8 col-xl-auto">
+              <div className="col-auto col-sm-8 col-md-8 col-lg-8 col-xl-8">
                 <div className="Ph">
                   <ProfileHeader />
                 </div>
