@@ -10,6 +10,7 @@ import About from './components/About';
 import compass from './Images/compass.jpg';
 import android from './Images/android.jpg';
 import Logopit from './Images/Logopit.png';
+import PageNotFound from "./components/PageNotFound";
 
 
 
@@ -75,6 +76,7 @@ export const Header = (props) => {
           <Route exact path={"/Login"} component={Login} />
           <Route exact path={"/About"} component={About} />
           <Route exact path={"/Profile"} component={Profile} />
+          <Route exact path={"*"} component={PageNotFound} />
         </Switch>
       </div>
     </div>

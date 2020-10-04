@@ -25,7 +25,7 @@ var register = function register(newUser) {
 exports.register = register;
 
 var login = function login(user) {
-  return _axios["default"].post("/users/login", {
+  return _axios["default"].post("http://localhost:5000/users/login", {
     email: user.email,
     password: user.password
   }).then(function _callee(res) {

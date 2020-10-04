@@ -29,83 +29,106 @@ const About = () =>{
             <h1 className="text-center ab">Hello and welcome to findIt</h1>
           </div>
           <br />
-          <div>
-            <h1>Introduction</h1>
-            <p>findIt is </p>
+          <div className="intro">
+            <h1 className="hb">Introduction</h1>
+            <p>
+              <em>
+                <span id="findit">findIt</span>{" "}
+              </em>
+              is a tourist navigation web app used by tourists and/or
+              indivividuals is to search for nearby places. Have you ever gone
+              to a foreign land and due to language barrier or shyness or even
+              lack of enough money for tourguide made you not to explore the
+              place? Congratulations!! You're just in the right place at the
+              right time. Make 
+              <span id="findit">findIt</span> your tourguide and you'll be
+              surprised of how how much technology can improve your life and
+              productivity. In contrary to available cluttered search
+              alternatives available, <span id="findit">findIt</span> is simply
+              developed for you the tourist or individual navigating your way
+              around new city/town and not for general use. This does not limit
+              the website to place searching only but also other use that may
+              seem fit to you.
+            </p>
           </div>
           <br />
 
-          <div className="content footer">
-            <p className="bg-warning text-center text-capitalize text">
-              This page is under construction!! Thanks for your patience
+          <div className="content">
+            <p className="bg-warning text-center text">
+              This website also has a chat mechanism that is still under
+              development. The chat mechanism allows users from the same country
+              or locality to meet, chat and share their experience about the
+              place and other things that they may deem fit for them. For
+              example Nigerian nationals in Kenya converging here for business
+              opportunity discussions or vacation in Kenya among other things.
+            </p>
+            <br />
+            <h5>About Myself</h5>
+            <p>
+              {/* <img src={} className=" float-left" /> */}
+
+              <p id="pimg">
+                Hello there! Am Samuel Wanjare, A Kenya based web developer. I
+                used different web technologies to build awesome web
+                applications like this one. Coding, reading and writing are some
+                of my hobbies making me turn ideas into codes and producing
+                artistic solutions to problems in the form of apps.
+              </p>
+            </p>
+            <p id="tec">
+              Primary tech stacks include HTML5, CSS, JavaScript, Boostrap5,
+              ReactJs, Nodejs and MongoDB
             </p>
           </div>
           <br />
           <br />
           <div className="contacts">
             <ul className="li">
-              <h2 className="text-warning">
-                Contact me using the social media handles below
+              <h2 className="">
+                For more information about me and what I do click below icons :
               </h2>
-              <li>
-                <p>
-                  <a
-                    href="https://twitter.com/intent/tweet?screen_name=SamuelWanjare&ref_src=twsrc%5Etfw"
-                    className="twitter-mention-button"
-                    data-show-count="true"
-                  >
-                    Tweet to @SamuelWanjare
-                  </a>
-                  {
-                    <script>
-                      async src="https://platform.twitter.com/widgets.js"
-                      charset="utf-8"
-                    </script>
-                  }
-                </p>
-              </li>
+              Facebook:
               <li>
                 <a href="https://web.facebook.com/">
                   <img src={facebook} alt="facebook" className="rounded icon" />
                 </a>
               </li>
-
+              &nbsp; &nbsp; &nbsp; Github:
               <li>
                 <a href="https://github.com/Magpiny">
                   <img src={github} alt="github" className="rounded icon" />
                 </a>
               </li>
-
+              &nbsp;&nbsp;&nbsp; LinkedIn
               <li>
                 <a href="https://www.linkedin.com/in/samuel-wanjare-179922ba/">
                   <img src={linkedin} alt="linkedIn" className="rounded icon" />
                 </a>
               </li>
-
+              &nbsp;&nbsp;&nbsp; Twitter:
               <li>
                 <a href="https://twitter.com/SamuelWanjare/">
                   <img src={twitter} alt="twitter" className="rounded icon" />
                 </a>
               </li>
-
+              &nbsp;&nbsp;&nbsp; Instagram:
               <li>
                 <a href="https://instagram.com/samuelwanjare/">
                   <img src={instagram} alt="twitter" className="rounded icon" />
                 </a>
               </li>
-
+              &nbsp;&nbsp;&nbsp; Whatsapp
               <li>
-                <a href="https://api.whatsapp.com/send?phone=254775863817&amp;text=Hi there! I have a question :)">Send Message
-
+                <a href="https://api.whatsapp.com/send?phone=254775863817&amp;text=Hi there! I have a question :)">
+                  Send Message
                   <img src={whatsapp} alt="twitter" className="rounded icon" />
                 </a>
               </li>
             </ul>
           </div>
-
-          <Footer />
         </div>
       </div>
+      <Footer />
     </div>
   );
 }

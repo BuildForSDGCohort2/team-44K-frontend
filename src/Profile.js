@@ -137,7 +137,7 @@ class Profile extends Component {
               {/*End of row */}
             </div>
 
-            {/*End of container div */}
+            {/* End of container div */}
           </div>
         );
     }
@@ -146,23 +146,3 @@ class Profile extends Component {
 
 export default Profile;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- 
