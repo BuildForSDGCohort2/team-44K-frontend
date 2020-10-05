@@ -41,7 +41,7 @@ const About = () =>{
               lack of enough money for tourguide made you not to explore the
               place? Congratulations!! You're just in the right place at the
               right time. Make 
-              <span id="findit">findIt</span> your tourguide and you'll be
+               <span id="findit">findIt</span> your tourguide and you'll be
               surprised of how how much technology can improve your life and
               productivity. In contrary to available cluttered search
               alternatives available, <span id="findit">findIt</span> is simply
