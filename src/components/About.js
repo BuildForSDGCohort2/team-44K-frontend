@@ -10,7 +10,7 @@ import linkedin from "../Images/linkedin.png";
 import twitter from "../Images/twitter.png";
 import instagram from "../Images/instagram.png";
 import whatsapp from '../Images/whatsapp.png'
-import * as Icon from "react-bootstrap-icons";
+
 import { Footer } from "../Pages";
 
 
