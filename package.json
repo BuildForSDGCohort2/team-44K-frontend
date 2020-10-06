@@ -10,8 +10,11 @@
     "react": "^16.13.1",
     "react-bootstrap-icons": "^1.0.0",
     "react-dom": "^16.13.1",
+    "react-helmet": "^6.1.0",
     "react-hook-form": "^6.7.0",
     "react-router-dom": "^5.2.0",
+    "react-script": "^2.0.5",
+    "react-script-tag": "^1.1.2",
     "react-scripts": "3.4.3",
     "yup": "^0.29.3"
   },
@@ -36,7 +39,6 @@
       "last 1 safari version"
     ]
   },
-  
   "proxy": "http://localhost:5000",
   "secure": "false"
 }

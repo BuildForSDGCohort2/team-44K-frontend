@@ -10,12 +10,8 @@ const ProfileHeader = (props) => {
    
   return(
     <div>
-      <Timer />{" "}
-      
-   
+      <Timer color="purple" size={30}/>{" "}
     </div>
   )
 }
-
-
 export default ProfileHeader;

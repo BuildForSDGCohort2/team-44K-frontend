@@ -331,9 +331,8 @@ export class Login extends Component{
     console.log(user);
     login(user).then(res =>{
       
-      this.props.history.push("/Profile");
-    
-    })
+      this.props.history.push("profile");
+    });
   }
 
   
@@ -351,11 +350,11 @@ export class Login extends Component{
         <div className="bg-gray  form-control-sm ">
           <Formik
             initialValues={{ email: "", password: "" }}
-            onSubmit={this.onSubmit}
+            onSubmit={ this.onSubmit }
           >
             {(formik) => (
               <Form
-                onSubmit={formik.handleSubmit}
+                
                 className="form-control-sm align-content-center mt-5"
               >
                 <label htmlFor="email">Enter your email</label> &nbsp;&nbsp;

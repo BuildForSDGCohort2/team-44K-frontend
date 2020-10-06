@@ -81,8 +81,6 @@ class Profile extends Component {
                 <div className="cube">
                   <Cubes />
                 </div>
-                <div></div>
-                <div></div>
 
                 {/*End of first column */}
               </div>
@@ -92,6 +90,8 @@ class Profile extends Component {
                 <div className="Ph">
                   <ProfileHeader />
                 </div>
+                <br />
+                <br />
 
                 <div className="hotel">
                   <Hotels />
