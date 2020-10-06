@@ -1,17 +1,18 @@
 import React from "react";
 import "../bootstrap.css";
 import "../Profile.css";
+import Timer from "../components/Timer";
 
 
 
 //Display user profile header
 const ProfileHeader = (props) => {
-
+   
   return(
     <div>
-   In your timeline today
-   Time function from momentjs
-   Weather api if time allows
+      <Timer />{" "}
+      
+   
     </div>
   )
 }

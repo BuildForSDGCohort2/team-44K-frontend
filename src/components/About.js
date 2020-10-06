@@ -120,7 +120,7 @@ const About = () =>{
               &nbsp;&nbsp;&nbsp; Whatsapp
               <li>
                 <a href="https://api.whatsapp.com/send?phone=254775863817&amp;text=Hi there! I have a question :)">
-                  Send Message
+                
                   <img src={whatsapp} alt="twitter" className="rounded icon" />
                 </a>
               </li>

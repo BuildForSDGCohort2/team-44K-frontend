@@ -7,29 +7,13 @@ import Profile from  "./Profile"
 import { Formik, Field, Form, ErrorMessage  } from 'formik';
 import {register, login} from './components/userFunctions';
 import About from './components/About';
+import Timer from './components/Timer';
 import compass from './Images/compass.jpg';
 import android from './Images/android.jpg';
 import Logopit from './Images/Logopit.png';
 import PageNotFound from "./components/PageNotFound";
 
 
-
-
-
-/**
- * Time things
- */
-
-
-let today = new Date();
-let date =
-  today.getDate() + "/" + (today.getMonth() + 1) + "/" + today.getUTCFullYear();
-let time =
-  today.getHours() + " : " + today.getMinutes() + " : " + today.getSeconds();
-let dateTime = date + "      " + time;
-
-const myTimer = setInterval(() =>{React.createElement('h4', null, `${dateTime}`)} 
-, 1000);
 
 /**
  * Page header goes here
@@ -194,7 +178,7 @@ export const HomepageUI = () => {
      return (
        <div className="container">
          <div className="form mt-5 mx-auto my-auto">
-           <h1 className="mb-3">Kindly login {dateTime} </h1>
+           <h1 className="mb-3"> <Timer /> </h1>
            <Formik
              initialValues={{
                username: "",
@@ -358,7 +342,9 @@ export class Login extends Component{
 
     return (
       <div className="container ">
-        <h1 className="mb-3"> {`Kindly Login ${myTimer}`} </h1>
+        <h1 className="mb-3">
+          <Timer />
+        </h1>
 
         {/* My form goes here */}
 

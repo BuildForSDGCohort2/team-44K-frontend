@@ -22,7 +22,7 @@ export const login = user => {
         email: user.email,
         password: user.password,
       })
-      .then(async (res) => {
+      .then( (res) => {
         //localStorage.removeItem("usertoken", res.data);
         //let token = JSON.stringify(res.data) ;
         localStorage.setItem("usertoken", res.data);
