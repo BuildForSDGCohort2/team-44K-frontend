@@ -323,14 +323,13 @@ export class Login extends Component{
 
 
   onSubmit(values){
-    
+  
     const user = {
       email : values.email,
       password : values.password
     }
     console.log(user);
     login(user).then(res =>{
-      
       this.props.history.push("profile");
     });
   }

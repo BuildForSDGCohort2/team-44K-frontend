@@ -2,7 +2,7 @@ import React from "react";
 import "../bootstrap.css";
 import "../Profile.css";
 import * as Icon from "react-bootstrap-icons";
-//import Gmaps from "../gmapsComponent/Gmaps";
+import HotelMaps from "../fakeGmapsComponent/HotelMaps";
 
 //Hotel accessibility component
 const Hotels = props => (
@@ -10,7 +10,7 @@ const Hotels = props => (
     <div>
  <i className="bg-yellow">Restaurants <Icon.Shop color="pink" size = {30} /> </i>
  <br />
- {/* <Gmaps /> */}
+ <HotelMaps />
 
     </div>
 )

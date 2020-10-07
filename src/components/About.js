@@ -9,7 +9,8 @@ import github from "../Images/github.png";
 import linkedin from "../Images/linkedin.png";
 import twitter from "../Images/twitter.png";
 import instagram from "../Images/instagram.png";
-import whatsapp from '../Images/whatsapp.png'
+import whatsapp from '../Images/whatsapp.png';
+import sam from '../Images/samsam.jpg';
 
 import { Footer } from "../Pages";
 
@@ -63,9 +64,9 @@ const About = () =>{
               opportunity discussions or vacation in Kenya among other things.
             </p>
             <br />
-            <h5>About Myself</h5>
+            <h3 className="h3 text-center text-decoration-underline">About Myself</h3>
             <p>
-              {/* <img src={} className=" float-left" /> */}
+              <img src={sam} alt="author-images" height={150} width={150} className=" float-left rounded-circle shadow" /> 
 
               <p id="pimg">
                 Hello there! Am Samuel Wanjare, A Kenya based web developer. I
