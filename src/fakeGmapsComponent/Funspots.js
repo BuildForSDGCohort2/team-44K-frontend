@@ -10,6 +10,7 @@ function Funspots(props) {
           <img src={clouds} alt="rhino-images" className="rounded mx-2" />
         </div>
         <div className="col-sm-4 col-md-4 col-lg-4 col-xl-4">
+          
           <table className="table table-striped table-bordered table-hover table-responsive">
             <thead>
               <tr>
